@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Voice Expense Tracker</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="topbar">
+      <h1>Voice Expense Tracker</h1>
+
+      <div class="mic-area">
+        <button id="micBtn" class="mic-large" aria-pressed="false">
+          <span class="icon" id="micIcon">🎤</span>
+          <span id="micLabel">Start Listening</span>
+        </button>
+
+        <button id="clearBtn" class="mic-small">Clear</button>
+      </div>
+    </header>
+
+    <!-- Summary Section -->
+    <section class="summary">
+      <div class="card"><h3>Total Spent</h3><p id="total">₹0</p></div>
+      <div class="card"><h3>This Month</h3><p id="monthTotal">₹0</p></div>
+      <div class="card"><h3>Top Category</h3><p id="topCat">—</p></div>
+      <div class="card"><h3>Entries</h3><p id="count">0</p></div>
+    </section>
+
+    <!-- Main Grid -->
+    <section class="content-grid">
+
+      <!-- Charts -->
+      <div class="left">
+        <div class="chart-card">
+          <h3>Spending by Category</h3>
+          <canvas id="pieChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h3>Last 6 Months</h3>
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Right Panel -->
+      <aside class="right">
+
+        <div class="form">
+          <h3>Manual Add (Expense / Income)</h3>
+
+          <form id="manualForm">
+            <input id="mAmount" type="number" placeholder="Amount (₹)" required>
+            <select id="mType">
+              <option value="expense">Expense (debited)</option>
+              <option value="income">Income (credited)</option>
+            </select>
+            <input id="mCategory" type="text" placeholder="Category (Food)">
+            <input id="mDate" type="date">
+            <input id="mNote" type="text" placeholder="Note (optional)">
+            <button type="submit">Add</button>
+          </form>
+        </div>
+
+        <div class="list">
+          <h3>Recent Transactions</h3>
+          <ul id="expenseList"></ul>
+        </div>
+
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <small>Say: “Spent 250 on petrol today” or “Got 2000 from parents”</small>
+    </footer>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
